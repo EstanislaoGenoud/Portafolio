@@ -1,0 +1,47 @@
+.works{
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+.cardSection{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+.cardWorks{
+  background-color: #27272a;
+  padding: 1.75rem;
+  border: 2px solid transparent;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-wrap: wrap;
+}
+.cardWorks:hover{
+  background-color: #323232;
+  border-color: #fff;
+}
+.cardTitle{
+  flex-basis: 100%;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+.cardImg{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.linkButton{
+  text-decoration: none;
+  color: #fafbff;
+  display: inline-block;
+  padding: .7rem 1.75rem;
+  border: 1px solid transparent;
+  background-color: #0e171f;
+  border-radius: 1.75rem;
+  margin-top: 1.2rem;
+  transition: background-color 0.4s ease-in, color 0.4s ease-in;
+}
+.linkButton:hover{
+  background-color: transparent;
+  border-color: #0e171f;
+  color: #0e171f;
+}

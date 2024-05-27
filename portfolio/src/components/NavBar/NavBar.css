@@ -1,0 +1,12 @@
+.BtnPersonal{
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #1D4ED8;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.BtnPersonal:hover{
+  background-color: #1e40af;
+}

@@ -1,0 +1,41 @@
+.features{
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+.cardF{
+  background-color: #27272a;
+  padding: 1rem;
+  border: 2px solid transparent;
+  border-radius: 18px;
+  transition: all 0.3s ease;
+}
+.cardF:hover{
+  background-color: #323232;
+  border-color: #fff;
+}
+.featuresIcon{
+  display: inline-block;
+  background-color: #1e40af;
+  padding: .125rem .5625rem;
+  margin-bottom: 1rem;
+  font-size: 1.75rem;
+  border-radius: .3125rem;
+}
+.iconAndTitle{
+  display: flex;
+  align-items: start;
+  gap: .5rem;
+  margin-bottom: .4rem;
+}
+.linkPersonal{
+  color: #fff;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.linkPersonal:hover{
+  color: #1e40af;
+}
