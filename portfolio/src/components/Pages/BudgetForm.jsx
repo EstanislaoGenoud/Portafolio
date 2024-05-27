@@ -66,7 +66,7 @@ function BudgetForm() {
           <input type="submit" name="enviar" value="enviar mensaje" className="BtnPersonal" />
         </form>
       </div>
-      <footer className="flex flex-col items-center  text-center text-surface dark:bg-neutral-700 dark:text-white">
+      <footer className="flex flex-col items-center  text-center text-surface dark:bg-neutral-700 mt-4 dark:text-white border-t-2 border-gray-700">
         <div className='container pt-9'>
           <div className='mb-6 flex justify-center space-x-2'>
             {/* Gmail */}
