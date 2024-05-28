@@ -89,18 +89,6 @@ function BudgetForm() {
             <p className="mb-4">
               This form will be useful for us to coordinate a first meeting, either virtual or in person. During the meeting, you will be able to tell us what kind of work you want to do, if you prefer to use one of our predefined templates or if you are looking for something more personalized.
             </p>
-            <div className='flex items-center mb-4'>
-              <MailIcon className='w-6 h-6 mr-2'/>
-              <span className="text-gray-700">estangeno@gmail.com</span>
-            </div>
-            <div className='flex items-center mb-4'>
-              <PhoneCallIcon className='w-6 h-6 mr-2'/>
-              <span className="text-gray-700">+54 9 3329-559691</span>
-            </div>
-            <div className='flex items-center'>
-              <MapPinIcon className='w-6 h-6 mr-2'/>
-              <span className="text-gray-700">San Pedro, Buenos Aires, Argentina.</span>
-            </div>
           </div>
           <form autoComplete="off" onSubmit={handleSubmit} className="md:w-1/2 space-y-4">
             <div>
