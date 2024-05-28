@@ -91,7 +91,7 @@ function BudgetForm() {
             </p>
             <div className='flex items-center mb-4'>
               <MailIcon className='w-6 h-6 mr-2'/>
-              <span className="text-gray-700">estanicodeg@gmail.com</span>
+              <span className="text-gray-700">estangeno@gmail.com</span>
             </div>
             <div className='flex items-center mb-4'>
               <PhoneCallIcon className='w-6 h-6 mr-2'/>
@@ -117,7 +117,7 @@ function BudgetForm() {
                 type="email"
                 name="email"
                 id="email"
-                placeholder="estani@gmail.com"
+                placeholder="estangeno@gmail.com"
                 className={`mt-1 p-2 w-full border rounded-md ${emailError ? 'border-red-500' : ''} ${isEmailValid ? 'border-green-500' : ''}`}
                 value={email}
                 onChange={handleEmailChange}
@@ -168,7 +168,7 @@ function BudgetForm() {
               <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message</label>
               <textarea name="message" placeholder="Tell us your idea for a next meeting, either face-to-face or virtual." className="mt-1 p-2 w-full border border-gray-300 rounded-md" value={message} onChange={(e) => setMessage(e.target.value)} ></textarea>
             </div>
-            <input type="submit" name="enviar" value="Enviar mensaje" className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-150" data-twe-ripple-init />
+            <input type="submit" name="enviar" value="Send message" className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-150" data-twe-ripple-init />
           </form>
         </div>
       </div>
