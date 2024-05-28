@@ -15,6 +15,7 @@ import './NavBar.css'
 function NavBar(){
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const imgLog = '../../Assets/EcodeisotipoBlanco.svg'
+  const imgLogMoB= '../../Assets/E-codeIsotipo.png'
 
   const handleScrollToSection = (sectionId, event) => {
     event.preventDefault();
@@ -29,7 +30,6 @@ function NavBar(){
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8 border-b-2 border-gray-700" aria-label="Global">
         <div className="flex lg:flex-1">
           <Link to='/'>
-            {/* Logo */}
             <img className='w-12' src={imgLog} alt="" />
           </Link>
         </div>
@@ -54,9 +54,7 @@ function NavBar(){
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className='flex items-center justify-between'>
             <Link to='/' className="-m-1.5 p-1.5">
-              {/* Cambiar logo blanco a oscuro */}
-              <span>Portfolio</span>
-              <img className='h-8 w-auto' src={imgLog} alt="" />
+              <img className='h-8 w-auto' src={imgLogMoB} alt="" />
             </Link>
             <button type="button" className='-m-2.5 rounded-md p-2.5 text-gray-700' onClick={() => setMobileMenuOpen(false)}>
               <span className='sr-only'>Close Menu</span>
