@@ -229,7 +229,7 @@ function BudgetForm() {
               </a>
           </div>
           <div className='text-center text-sm font-bold text-primary dark:text-white'>
-            EstaniCode &copy; 2023 Copyright. All rights reserved.
+            EstaniCode &copy; 2024 Copyright. All rights reserved.
           </div>
         </div>
       </footer>
