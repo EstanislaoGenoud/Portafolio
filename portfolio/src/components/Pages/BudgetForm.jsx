@@ -63,7 +63,7 @@ function BudgetForm() {
     try {
       await addDoc(salesCollection, sale);
     } catch (error) {
-      console.error("Error al crear el documento de venta", error);
+      console.error("Error when creating the sales document", error);
       throw error;
     }
   };
