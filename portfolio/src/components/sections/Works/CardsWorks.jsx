@@ -15,7 +15,7 @@ function CardsWorks({img, title, desc, link}) {
         <div className="cardDesc">
           <p>{desc}</p>
         </div>
-        <Link to="/" className="linkButton">Learn more</Link>
+        <Link to="/budgetform" className="linkButton">Learn more</Link>
       </div>
     </>
   )

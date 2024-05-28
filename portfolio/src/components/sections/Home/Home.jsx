@@ -9,25 +9,26 @@ function Home() {
   const imgMain = '../../Assets/header.png'
   return(
     <>
-      <div className="container flex flex-wrap items-center">
-        <div className="w-1/2 flex flex-col gap-3 text-white">
+      <div className="container flex flex-wrap items-center mx-auto text-white">
+        <div className="w-full md:w-1/2 px-4 md:px-0 text-center md:text-left">
           <h1 className="text-4xl">Hi, I'm Estanislao, Web Developer</h1>
-          <p>I am passionate about creating engaging and functional web experiences, and I am convinced that my combination of technical and creative skills can contribute significantly to your team.</p>
+          <p className="mt-3">I am passionate about creating engaging and functional web experiences, and I am convinced that my combination of technical and creative skills can contribute significantly to your team.</p>
           <div className="mt-3">
             <Link to='/budgetform' className='BtnPersonal'>Hire Me</Link>
           </div>
         </div>
-        <div className="w-1/2 imgMain">
-          <img src={imgMain} alt="Header" />
+        <div className="w-full md:w-1/2 relative">
+          <img src={imgMain} alt="Header" className="w-full" />
+          <div className="imgMain-overlay"></div>
         </div>
       </div>
       <Features/>
       <Works/>
-      <footer className="flex flex-col items-center  text-center text-surface dark:bg-neutral-700 dark:text-white border-t-2 border-gray-700">
-        <div className='container pt-9'>
-          <div className='mb-6 flex justify-center space-x-2'>
-            {/* Gmail */}
-            <a 
+      <footer className="flex flex-col items-center text-center text-surface dark:bg-neutral-700 dark:text-white border-t-2 border-gray-700 mt-6 py-6">
+        <div className='container mx-auto'>
+          <div className='mb-6 flex justify-center space-x-4'>
+           {/* Gmail */}
+              <a 
               href="#"
               type='button'
               className='rounded-full bg-transparent p-3 font-medium uppercase leading-normal text-surface transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-none focus:ring-0 dark:text-white dark:hover:bg-secondary-900'
@@ -91,8 +92,10 @@ function Home() {
                 </span>
               </a>
           </div>
+          <div className='text-center text-sm font-bold text-primary dark:text-white'>
+            EstaniCode &copy; 2023 Copyright. All rights reserved.
+          </div>
         </div>
-        <p className='text-white '>© 2023 Copyright: Estanislao Genoud</p>
       </footer>
     </>
   )

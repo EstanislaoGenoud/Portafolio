@@ -18,7 +18,7 @@ function Features(){
               <div>
                 <p className="text-lg">Do you have a problem in your codes? Let me know and I'll help you fix it. </p>
               </div>
-              <Link to='/' className='linkPersonal flex items-center gap-1'>Join now <ArrowRightIcon className="h-3 w-3"/></Link>
+              <Link to='/budgetform' className='linkPersonal flex items-center gap-1'>Join now <ArrowRightIcon className="h-3 w-3"/></Link>
           </div>
           <div className="cardF">
             <div className="iconAndTitle">
@@ -28,7 +28,7 @@ function Features(){
             <div className="">
               <p className="text-lg">Do you want to work together? Send us an email and we will read it. </p>
             </div>
-              <Link to='/' className='linkPersonal flex items-center gap-1'>Join now <ArrowRightIcon className="h-3 w-3"/></Link>
+              <Link to='/budgetform' className='linkPersonal flex items-center gap-1'>Join now <ArrowRightIcon className="h-3 w-3"/></Link>
           </div>
         </div>
       </div>

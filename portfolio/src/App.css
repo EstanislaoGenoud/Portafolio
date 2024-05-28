@@ -1,11 +1,12 @@
-main{
+main {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-.imgMain::before{
+
+.imgMain-overlay {
   content: 'o';
   position: absolute;
   top: 0;
@@ -16,5 +17,5 @@ main{
   line-height: 20rem;
   color: #1D4ED8;
   opacity: 0.2;
-  z-index: -100;
+  z-index: -1;
 }
