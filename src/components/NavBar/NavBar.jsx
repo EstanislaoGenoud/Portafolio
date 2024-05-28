@@ -66,13 +66,13 @@ function NavBar(){
           <div className='mt-6 flow-root'>
             <div className='-my-6 divide-y divide-gray-500/10'>
               <div className="space-y-2 py-6">
-                <Link to='/' className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Home</Link>
+                <Link to='/' className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" onClick={() => setMobileMenuOpen(false)}>Home</Link>
                 <a href='#features-section' onClick={(e) => handleScrollToSection('features-section', e)} className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Features</a>
                 <a href='#ourWorks-section' onClick={(e) => handleScrollToSection('ourWorks-section', e)} className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Our Works</a>
-                <Link to='/budgetform' className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Budget</Link>
+                <Link to='/budgetform' className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" onClick={() => setMobileMenuOpen(false)}>Budget</Link>
               </div>
               <div className="py-6">
-                <Link to='/budgetform' className='BtnPersonal'>Hire Me</Link>
+                <Link to='/budgetform' className='BtnPersonal' onClick={() => setMobileMenuOpen(false)}>Hire Me</Link>
               </div>
             </div>
           </div>
