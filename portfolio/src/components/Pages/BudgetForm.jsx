@@ -3,113 +3,180 @@ import { PhoneCallIcon, MailIcon, MapPinIcon } from 'lucide-react';
 import { app } from '../../firebase';
 import { addDoc, collection, getFirestore, serverTimestamp } from 'firebase/firestore';
 import { useState } from 'react';
+import { toast } from "react-toastify";
 
 function BudgetForm() {
-  const [formData, setFormData] = useState({
-    name: '',
-    lastname: '',
-    email: '',
-    favoriteOnly: '',
-    jobType: '',
-    numberOfPages: '',
-    budget: '',
-    message: '',
-  });
+  const [name, setName] = useState('');
+  const [lastname, setLastname] = useState('');
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [isEmailValid, setIsEmailValid] = useState(false);
+  const [favoriteOnly, setFavoriteOnly] = useState('');
+  const [jobType, setJobType] = useState('');
+  const [numberOfPages, setNumberOfPages] = useState('');
+  const [budget, setBudget] = useState('');
+  const [message, setMessage] = useState('');
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!isEmailValid) {
+      toast.error("Please correct the errors in the form.");
+      return;
+    }
+    createSale({
+      name,
+      lastname,
+      email,
+      favoriteOnly,
+      jobType,
+      numberOfPages,
+      budget,
+      message
+    })
+    .then(() => {
+      toast.success("The form has been sent successfully");
+      setName("");
+      setLastname("");
+      setEmail("");
+      setFavoriteOnly("");
+      setJobType("");
+      setNumberOfPages("");
+      setBudget("");
+      setMessage("");
+      setEmailError("");
+      setIsEmailValid(false);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const createSale = async (saleDetails) => {
     const db = getFirestore(app);
     const salesCollection = collection(db, 'sales');
+    const sale = {
+      ...saleDetails,
+      favoriteOnly: favoriteOnly,
+      jobType: jobType,
+      timestamp: serverTimestamp(),
+    };
     try {
-      await addDoc(salesCollection, {
-        ...formData,
-        timestamp: serverTimestamp(),
-      });
-      setFormData({
-        name: '',
-        lastname: '',
-        email: '',
-        favoriteOnly: '',
-        jobType: '',
-        numberOfPages: '',
-        budget: '',
-        message: '',
-      });
-      alert('Form submitted successfully!');
+      await addDoc(salesCollection, sale);
     } catch (error) {
-      console.error('Error adding document: ', error);
+      console.error("Error al crear el documento de venta", error);
+      throw error;
     }
   };
 
+  const handleEmailChange = (e) => {
+    const value = e.target.value;
+    setEmail(value);
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@(gmail\.com|hotmail\.com|outlook\.com)$/i;
+    if (!emailPattern.test(value)) {
+      setEmailError('Please enter a valid email from @gmail.com, @hotmail.com, or @outlook.com');
+      setIsEmailValid(false);
+    } else {
+      setEmailError('');
+      setIsEmailValid(true);
+    }
+  };
   return (
     <>
-      <div className="container containerForm">
-        <div className="infoForm">
-          <h2>Contact Form</h2>
-          <p>
-            This form will be useful for us to coordinate a first meeting, either virtual or in person. During the meeting, you will be able to tell us what kind of work you want to do, if you prefer to use one of our predefined templates or if you are looking for something more personalized.
-          </p>
-          <div className='textAndIcon'>
-            <MailIcon className='icon'/>
-            <span className="infoPersonal">estanicodeg@gmail.com</span>
+      <div className="container mx-auto p-4">
+        <div className="bg-white shadow-md rounded-lg p-6 md:flex md:space-x-6">
+          <div className="infoForm md:w-1/2 mb-6 md:mb-0">
+            <h2 className="text-2xl font-semibold mb-4">Contact Form</h2>
+            <p className="mb-4">
+              This form will be useful for us to coordinate a first meeting, either virtual or in person. During the meeting, you will be able to tell us what kind of work you want to do, if you prefer to use one of our predefined templates or if you are looking for something more personalized.
+            </p>
+            <div className='flex items-center mb-4'>
+              <MailIcon className='w-6 h-6 mr-2'/>
+              <span className="text-gray-700">estanicodeg@gmail.com</span>
+            </div>
+            <div className='flex items-center mb-4'>
+              <PhoneCallIcon className='w-6 h-6 mr-2'/>
+              <span className="text-gray-700">+54 9 3329-559691</span>
+            </div>
+            <div className='flex items-center'>
+              <MapPinIcon className='w-6 h-6 mr-2'/>
+              <span className="text-gray-700">San Pedro, Buenos Aires, Argentina.</span>
+            </div>
           </div>
-          <div className='textAndIcon'>
-            <PhoneCallIcon className='icon'/>
-            <span className="infoPersonal">+54 9 3329-559691</span>
-          </div>
-          <div className='textAndIcon'>
-            <MapPinIcon className='icon'/>
-            <span className="infoPersonal">San Pedro, Buenos Aires, Argentina.</span>
-          </div>
+          <form autoComplete="off" onSubmit={handleSubmit} className="md:w-1/2 space-y-4">
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
+              <input type="text" name="name" id="name" placeholder="Your name" className="mt-1 p-2 w-full border border-gray-300 rounded-md" value={name} onChange={(e) => setName(e.target.value)} />
+            </div>
+            <div>
+              <label htmlFor="lastname" className="block text-sm font-medium text-gray-700">LastName</label>
+              <input type="text" name="lastname" id="lastname" placeholder="Your lastname" className="mt-1 p-2 w-full border border-gray-300 rounded-md" value={lastname} onChange={(e) => setLastname(e.target.value)} />
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="estani@gmail.com"
+                className={`mt-1 p-2 w-full border rounded-md ${emailError ? 'border-red-500' : ''} ${isEmailValid ? 'border-green-500' : ''}`}
+                value={email}
+                onChange={handleEmailChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="favoriteOnly" className="block text-sm font-medium text-gray-700">Select job type</label>
+              <select name="favoriteOnly" id="favoriteOnly" className="mt-1 p-2 w-full border border-gray-300 rounded-md" value={favoriteOnly} onChange={(e) => setFavoriteOnly(e.target.value)} >
+                <option value="">-</option>
+                <option value="Bug fixes">Bug fixes</option>
+                <option value="Correction of code">Correction of code</option>
+                <option value="Web Page">Web Page</option>
+                <option value="Web Site">Web Site</option>
+                <option value="E-Commerce">E-Commerce</option>
+              </select>
+            </div>
+            <div>
+              <label htmlFor="jobType" className="block text-sm font-medium text-gray-700">Web Design</label>
+              <select name="jobType" id="jobType" className="mt-1 p-2 w-full border border-gray-300 rounded-md" value={jobType} onChange={(e) => setJobType(e.target.value)}>
+                <option value="">-</option>
+                <option value="Default design">Default design</option>
+                <option value="Customize design">Customize design</option>
+              </select>
+            </div>
+            <div>
+              <label htmlFor="numberOfPages" className="block text-sm font-medium text-gray-700">Number of Pages</label>
+              <select name="numberOfPages" id="numberOfPages" className="mt-1 p-2 w-full border border-gray-300 rounded-md" value={numberOfPages} onChange={(e) => setNumberOfPages(e.target.value)} >
+                <option value="">-</option>
+                <option value="1 Page">1 Page</option>
+                <option value="2 Pages">2 Pages</option>
+                <option value="3 Pages">3 Pages</option>
+                <option value="4 Pages">4 Pages</option>
+                <option value="5 or more Pages">5 or more Pages</option>
+              </select>
+            </div>
+            <div>
+              <label htmlFor="budget" className="block text-sm font-medium text-gray-700">Budget</label>
+              <select name="budget" id="budget" className="mt-1 p-2 w-full border border-gray-300 rounded-md" value={budget} onChange={(e) => setBudget(e.target.value)} >
+                <option value="">-</option>
+                <option value="100 a 499">100 a 499</option>
+                <option value="500 a 999">500 a 999</option>
+                <option value="1000 a 1999">1000 a 1999</option>
+                <option value="2000 a 2999">2000 a 2999</option>
+                <option value="3000 o más">3000 o más</option>
+              </select>
+            </div>
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message</label>
+              <textarea name="message" placeholder="Tell us your idea for a next meeting, either face-to-face or virtual." className="mt-1 p-2 w-full border border-gray-300 rounded-md" value={message} onChange={(e) => setMessage(e.target.value)} ></textarea>
+            </div>
+            <input type="submit" name="enviar" value="Enviar mensaje" className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-150" data-twe-ripple-init />
+          </form>
         </div>
-        <form onSubmit={handleSubmit} autoComplete="off">
-          <label htmlFor="name">Name</label>
-          <input type="text" name="name" id="name" placeholder="Your name" className="inputForm" value={formData.name} onChange={handleChange} />
-          <label htmlFor="lastname">LastName</label>
-          <input type="text" name="lastname" id="lastname" placeholder="Your lastname" className="inputForm" value={formData.lastname} onChange={handleChange} />
-          <label htmlFor="email">Email</label>
-          <input type="email" name="email" id="email" placeholder="Your email" className="inputForm" value={formData.email} onChange={handleChange} />
-          <label htmlFor="favoriteOnly">Select job type</label>
-          <select name="favoriteOnly" id="favoriteOnly" className="inputForm" value={formData.favoriteOnly} onChange={handleChange}>
-            <option value="">-</option>
-            <option value="Bug fixes">Bug fixes</option>
-            <option value="Correction of code">Correction of code</option>
-            <option value="Web Page">Web Page</option>
-            <option value="Web Site">Web Site</option>
-            <option value="E-Commerce">E-Commerce</option>
-          </select>
-          <label htmlFor="numberOfPages">Number of Pages</label>
-          <select name="numberOfPages" id="numberOfPages" className="inputForm" value={formData.numberOfPages} onChange={handleChange}>
-            <option value="">-</option>
-            <option value="1 Page">1 Page</option>
-            <option value="2 Pages">2 Pages</option>
-            <option value="3 Pages">3 Pages</option>
-            <option value="4 Pages">4 Pages</option>
-            <option value="5 or more Pages">5 or more Pages</option>
-          </select>
-          <label htmlFor="budget">Budget</label>
-          <select name="budget" id="budget" className="inputForm" value={formData.budget} onChange={handleChange}>
-            <option value="">-</option>
-            <option value="100 a 499">100 a 499</option>
-            <option value="500 a 999">500 a 999</option>
-            <option value="1000 a 1999">1000 a 1999</option>
-            <option value="2000 a 2999">2000 a 2999</option>
-            <option value="3000 o mas">3000 o mas</option>
-          </select>
-          <textarea name="message" placeholder="Tell us your idea for a next meeting, either face-to-face or virtual." value={formData.message} onChange={handleChange}></textarea>
-          <input type="submit" name="enviar" value="Enviar mensaje" className="BtnPersonal" />
-        </form>
       </div>
-      <footer className="flex flex-col items-center  text-center text-surface dark:bg-neutral-700 dark:text-white border-t-2 border-gray-700">
-        <div className='container pt-9'>
-          <div className='mb-6 flex justify-center space-x-2'>
-            {/* Gmail */}
-            <a 
+      <footer className="flex flex-col items-center text-center text-surface dark:bg-neutral-700 dark:text-white border-t-2 border-gray-700 mt-6 py-6">
+        <div className='container mx-auto'>
+          <div className='mb-6 flex justify-center space-x-4'>
+           {/* Gmail */}
+              <a 
               href="#"
               type='button'
               className='rounded-full bg-transparent p-3 font-medium uppercase leading-normal text-surface transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-none focus:ring-0 dark:text-white dark:hover:bg-secondary-900'
@@ -173,11 +240,12 @@ function BudgetForm() {
                 </span>
               </a>
           </div>
+          <div className='text-center text-sm font-bold text-primary dark:text-white'>
+            EstaniCode &copy; 2023 Copyright. All rights reserved.
+          </div>
         </div>
-        <p className='text-white '>© 2023 Copyright: Estanislao Genoud</p>
       </footer>
     </>
   );
 }
-
 export default BudgetForm;

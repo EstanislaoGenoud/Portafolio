@@ -1,25 +1,16 @@
-.containerForm{
-  width: 100%;
-  max-width: 1100px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 50px;
-  margin-top: 90px;
-}
-.containerForm h2{
+.containerForm h2 {
   margin-bottom: .9375rem;
   font-size: 35px;
   color: #fff;
   font-weight: 600;
 }
-.containerForm p{
+.containerForm p {
   font-size: 1.0625rem;
   color: #fff;
   line-height: 1.6;
   margin-bottom: 30px;
 }
-.containerForm span{
+.containerForm span {
   font-size: 1.0625rem;
   display: inline-block;
   width: 100%;
@@ -29,28 +20,19 @@
   transition: all 0.4s ease;
   cursor: pointer;
 }
-.containerForm span:hover{
+.containerForm span:hover {
   color: #1D4ED8;
 }
-.containerForm .icon{
-  color: #1D4ED8;
-  margin-right: 10px;
-}
-.textAndIcon{
-  display: flex;
-  align-items: start;
-  margin-bottom: .4rem;
-}
-.infoForm{
+.infoForm {
   flex: 0 0 45%;
 }
-form{
+form {
   flex: 0 0 45%;
 }
-.containerForm label{
+.containerForm label {
   color: #fff;
 }
-.containerForm form .inputForm, textarea{
+.containerForm form .inputForm, textarea {
   width: 100%;
   padding: 15px 10px;
   font-size: .9735rem;
@@ -59,22 +41,22 @@ form{
   margin-bottom: 20px;
   outline: 0px;
 }
-.containerForm form .inputForm:focus{
+.containerForm form .inputForm:focus {
   border: 1px solid #1D4ED8;
 }
-.containerForm form textarea{
+.containerForm form textarea {
   max-width: 100%;
   min-width: 100%;
   min-height: 140px;
   max-height: 150px;
 }
-.containerForm form .inputForm{
+.containerForm form .inputForm {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
 }
-.containerForm form .inputForm input{
+.containerForm form .inputForm input {
   width: 100%;
   padding: 15px 10px;
   font-size: .9735rem;
@@ -83,6 +65,12 @@ form{
   margin-bottom: 20px;
   outline: 0px;
 }
-.containerForm form .inputForm input:focus{
+.containerForm form .inputForm input:focus {
   border: 1px solid #1D4ED8;
+}
+.inputForm.error {
+  border-color: red;
+}
+.inputForm.valid {
+  border-color: green;
 }
