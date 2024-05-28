@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import Features from '../Features/Features'
 import Works from '../Works/Works'
+import Banner from '../Banner/Banner'
 
 
 
@@ -29,6 +30,9 @@ function Home() {
       </section>
       <section id="ourWorks-section">
         <Works/>
+      </section>
+      <section id="banner-section">
+        <Banner />
       </section>
       <footer className="flex flex-col items-center text-center text-surface dark:bg-neutral-700 dark:text-white border-t-2 border-gray-700 mt-6 py-6">
         <div className='container mx-auto'>
