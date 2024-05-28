@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Form, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Dialog, Popover } from '@headlessui/react'
 import { 
   ArrowPathIcon, 
@@ -15,6 +15,15 @@ import './NavBar.css'
 function NavBar(){
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const imgLog = '../../Assets/EcodeisotipoBlanco.svg'
+
+  const handleScrollToSection = (sectionId, event) => {
+    event.preventDefault();
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setMobileMenuOpen(false);
+    }
+  }
   return(
     <header className="bg-slate-800">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8 border-b-2 border-gray-700" aria-label="Global">
@@ -32,9 +41,9 @@ function NavBar(){
         </div>
         <Popover.Group className="hidden lg:flex lg:gap-x-12 ">
           <Link to='/' className='text-sm font-semibold leading-6 text-white'>Home</Link>
-          <Link to='/' className='text-sm font-semibold leading-6 text-white'>Features</Link>
-          <Link to='/' className='text-sm font-semibold leading-6 text-white'>Our Works</Link>
-          <Link to='/' className='text-sm font-semibold leading-6 text-white'>Budget</Link>
+          <a href="#features-section" onClick={(e) => handleScrollToSection('features-section', e)} className='text-sm font-semibold leading-6 text-white'>Features</a>
+          <a href='#ourWorks-section' onClick={(e) => handleScrollToSection('ourWorks-section', e)} className='text-sm font-semibold leading-6 text-white'>Our Works</a>
+          <Link to='/budgetform' className='text-sm font-semibold leading-6 text-white'>Budget</Link>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Link to='/budgetform' className='BtnPersonal'>Hire Me</Link>
@@ -58,9 +67,9 @@ function NavBar(){
             <div className='-my-6 divide-y divide-gray-500/10'>
               <div className="space-y-2 py-6">
                 <Link to='/' className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Home</Link>
-                <Link to='/' className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Features</Link>
-                <Link to='/' className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Our Works</Link>
-                <Link to='/' className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Budget</Link>
+                <a href='#features-section' onClick={(e) => handleScrollToSection('features-section', e)} className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Features</a>
+                <a href='#ourWorks-section' onClick={(e) => handleScrollToSection('ourWorks-section', e)} className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Our Works</a>
+                <Link to='/budgetform' className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Budget</Link>
               </div>
               <div className="py-6">
                 <Link to='/budgetform' className='BtnPersonal'>Hire Me</Link>

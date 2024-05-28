@@ -9,7 +9,7 @@ function CardsWorks({img, title, desc, link}) {
         </div>
         <div className="cardImg">
           <a href={link} target="_blank">
-            <img src={img} alt={title}/>
+            <img src={img} alt={title} className=""/>
           </a>
         </div>
         <div className="cardDesc">

@@ -1,41 +1,53 @@
-.features{
+.features {
   margin-top: 4rem;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 2rem;
 }
-.cardF{
+
+
+@media (min-width: 768px) {
+  .features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.cardF {
   background-color: #27272a;
   padding: 1rem;
   border: 2px solid transparent;
   border-radius: 18px;
   transition: all 0.3s ease;
 }
-.cardF:hover{
+
+.cardF:hover {
   background-color: #323232;
   border-color: #fff;
 }
-.featuresIcon{
+
+.featuresIcon {
   display: inline-block;
   background-color: #1e40af;
-  padding: .125rem .5625rem;
+  padding: 0.125rem 0.5625rem;
   margin-bottom: 1rem;
   font-size: 1.75rem;
-  border-radius: .3125rem;
+  border-radius: 0.3125rem;
 }
-.iconAndTitle{
+
+.iconAndTitle {
   display: flex;
   align-items: start;
-  gap: .5rem;
-  margin-bottom: .4rem;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
 }
-.linkPersonal{
+
+.linkPersonal {
   color: #fff;
   transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
 }
 
-.linkPersonal:hover{
+.linkPersonal:hover {
   color: #1e40af;
 }

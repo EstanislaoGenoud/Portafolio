@@ -9,7 +9,13 @@ function Home() {
   const imgMain = '../../Assets/header.png'
   return(
     <>
-      <div className="container flex flex-wrap items-center mx-auto text-white">
+      <div className="container flex flex-col md:flex-row items-center mx-auto text-white">
+        {/* En pantallas pequeñas, la imagen va primero */}
+        <div className="w-full md:w-1/2 relative mb-4 md:mb-0">
+          <img src={imgMain} alt="Header" className="w-full h-auto md:h-full" />
+          <div className="imgMain-overlay"></div>
+        </div>
+        {/* En pantallas pequeñas, el texto va después */}
         <div className="w-full md:w-1/2 px-4 md:px-0 text-center md:text-left">
           <h1 className="text-4xl">Hi, I'm Estanislao, Web Developer</h1>
           <p className="mt-3">I am passionate about creating engaging and functional web experiences, and I am convinced that my combination of technical and creative skills can contribute significantly to your team.</p>
@@ -17,13 +23,13 @@ function Home() {
             <Link to='/budgetform' className='BtnPersonal'>Hire Me</Link>
           </div>
         </div>
-        <div className="w-full md:w-1/2 relative">
-          <img src={imgMain} alt="Header" className="w-full" />
-          <div className="imgMain-overlay"></div>
-        </div>
       </div>
-      <Features/>
-      <Works/>
+      <section id="features-section" className="mt-10">
+        <Features/>
+      </section>
+      <section id="ourWorks-section">
+        <Works/>
+      </section>
       <footer className="flex flex-col items-center text-center text-surface dark:bg-neutral-700 dark:text-white border-t-2 border-gray-700 mt-6 py-6">
         <div className='container mx-auto'>
           <div className='mb-6 flex justify-center space-x-4'>
